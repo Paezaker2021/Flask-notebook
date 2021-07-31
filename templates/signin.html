@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block contents %}
+    <form action="{{url_for("signin_done")}}" method="POST">
+        <p>Email :</p>
+        <input type="email" name="email" id="email">
+        <p>ID :</p>
+        <input type="text" name="id" id="id">
+        <p>Password :</p>
+        <input type="password" name="pwd" id="pwd">
+        <p>name :</p>
+        <input type="text" name="name" id="name">
+        <button type="submit">회원가입</button>
+    </form>
+{% endblock contents %}

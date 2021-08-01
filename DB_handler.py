@@ -8,14 +8,24 @@ class DBModule:
             config = json.load(f)
 
 
-        self.firebase = pyrebase.initialize_app(config)
+        firebase = pyrebase.initialize_app(config)
+        self.db = firebase.database()
 
         
     def login(self , id, pwd):
         pass
 
-    def signin(self , id, pwd, email, name):
-        pass
+    def signin(self ,email, _id_, pwd, name):
+        information = {
+            "email":email,
+            "uid":_id_,
+            "pwd": pwd,
+            "uname":name,
+            
+        }
+
+        print(information)
+        self.db.child("users").child(_id_).set(information)
 
     def write_post(self, user, contents):
         pass

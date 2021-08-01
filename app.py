@@ -9,7 +9,6 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-
 @app.route("/list")
 def post_list():
     pass
@@ -32,7 +31,15 @@ def signin():
 
 @app.route("/signin_done")
 def signin_done():
-    pass
+    email = request.args.get("email")
+    uid = request.args.get("id")
+    pwd = request.args.get("pwd")
+    name = request.args.get("name")
+
+    if DB.signin(email,uid,pwd,name):
+        return redirect(url_for("index"))
+    else:
+        return redirect(url_for("signin"))
 
 @app.route("/user/<uid>")
 def user(uid):

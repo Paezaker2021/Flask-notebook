@@ -12,10 +12,23 @@ class DBModule:
         self.db = firebase.database()
 
         
-    def login(self , id, pwd):
-        pass
+    def login(self , uid, pwd):
+        users = self.db.child("users").get().val()
+        try:
+            userinfo = users[uid]
+            if userinfo["pwd"] == pwd:
+                return True
+            else:
+                return False
+        except:
+            return False
+
+
 
     def signin(self ,email, _id_, pwd, name):
+        if(email or _id_ or pwd or name == ""):
+            return False
+        
         information = {
             "email":email,
             "uid":_id_,
@@ -24,7 +37,6 @@ class DBModule:
             
         }
 
-        print(information)
 
         if self.signin_verf(_id_):
             self.db.child("users").child(_id_).set(information)

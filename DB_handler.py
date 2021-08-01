@@ -25,7 +25,13 @@ class DBModule:
         }
 
         print(information)
-        self.db.child("users").child(_id_).set(information)
+
+        if self.signin_verf(_id_):
+            self.db.child("users").child(_id_).set(information)
+            return True
+        else:
+            return False
+
 
     def write_post(self, user, contents):
         pass
@@ -38,3 +44,11 @@ class DBModule:
 
     def get_user(self):
         pass
+
+    def signin_verf(self, uid):
+        users = self.db.child("users").get().val()
+        for i in users:
+            if uid == i:
+                return False
+
+        return True

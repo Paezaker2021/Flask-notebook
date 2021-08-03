@@ -9,6 +9,35 @@
 {% else %}
     <p>{{users}}님 환영합니다.</p>
     <a href="{{url_for("logout")}}">로그아웃</a>
+
+
+    <form class="form-inline" method="GET" action="{{ url_for('download') }}">
+        <div class="form-group">
+          <div class="input-group">
+              <span class="input-group-addon">Please select</span>
+                    <select name="year_select" class="selectpicker form-control" id="year_select">
+                    {% for o in yeardata %}
+                        <option value="{{ o.name }}">{{ o.name }}</option>
+                        {% endfor %}
+                        </select>
+                    
+                    <select name="semester_select" class="selectpicker form-control" id="semester_select">
+                        {% for o in semesterdata %}
+                        <option value="{{ o.name }}">{{ o.name }}</option>
+                        {% endfor %}
+                        </select>
+                    
+                    
+                    <select name="subject_select" class="selectpicker form-control" id="subject_select">
+                        {% for o in subjectdata %}
+                        <option value="{{ o.name }}">{{ o.name }}</option>
+                        {% endfor %}
+                        </select>
+
+          </div>
+          <button type="submit" class="btn btn-default">Go</button>
+        </div>
+      </form>
 {% endif %}
 {% endblock user %}
 

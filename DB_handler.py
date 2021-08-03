@@ -27,7 +27,6 @@ class DBModule:
 
 
     def signin(self ,email, _id_, pwd, name):
-        print(email, _id_, pwd, name)
         '''
             if(email or _id_ or pwd == ""):
             return False
@@ -42,7 +41,6 @@ class DBModule:
         }
 
 
-        print(information)
         '''
         if self.signin_verf(_id_):
             
@@ -64,7 +62,7 @@ class DBModule:
     def post_detail(self, pid):
         pass
 
-    def get_user(self):
+    def download(self):
         pass
 
     def signin_verf(self, uid):

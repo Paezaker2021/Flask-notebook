@@ -12,15 +12,12 @@ def index():
         user = session["uid"]
     else:
         user = "Login"
-    return render_template("index.html", users = user)
+    return render_template("index.html", users = user
+        ,yeardata = [{'name':'2019학년도'}, {'name':'2020학년도'}, {'name':'2021학년도'}]
+        ,subjectdata =[{'name':'국어'}, {'name':'수학'}, {'name':'물리학1'}, {'name':'화학1'}, {'name':'생물과학1'}, {'name':'지구과학1'}, {'name':'정보과학'}]
+        ,semesterdata = [{'name':'1학년 1학기'}, {'name':'1학년 2학기'}, {'name':'2학년 1학기'}, {'name':'2학년 2학기'}, {'name':'3학년 1학기'}, {'name':'3학년 2힉기'}]
+        )
 
-@app.route("/list")
-def post_list():
-    pass
-
-@app.route("/post/<int:pid>")
-def post(pid):
-    pass
 
 @app.route("/login")
 def login():
@@ -67,13 +64,9 @@ def signin_done():
         flash('이미 존재하는 아이디이거나, 빈칸이 존재 합니다.')
         return redirect(url_for("signin"))
 
-@app.route("/user/<uid>")
-def user(uid):
-    pass
-
-@app.route("/write", methods=["GET"]) #나중에 post로 변경
-def write():
-    pass
+@app.route("/download")
+def download():
+    return redirect(url_for('download'))
 
 
 if __name__ == "__main__":

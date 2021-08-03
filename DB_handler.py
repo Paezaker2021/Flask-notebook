@@ -1,3 +1,4 @@
+from logging import info
 import pyrebase
 import json
 
@@ -26,23 +27,32 @@ class DBModule:
 
 
     def signin(self ,email, _id_, pwd, name):
-        if(email or _id_ or pwd or name == ""):
+        print(email, _id_, pwd, name)
+        '''
+            if(email or _id_ or pwd == ""):
             return False
+        '''
+
         
         information = {
             "email":email,
             "uid":_id_,
             "pwd": pwd,
             "uname":name,
-            
         }
 
 
+        print(information)
+        '''
         if self.signin_verf(_id_):
-            self.db.child("users").child(_id_).set(information)
+            
             return True
         else:
             return False
+        '''
+        self.db.child("users").child(_id_).set(information)
+        return True
+
 
 
     def write_post(self, user, contents):

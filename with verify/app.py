@@ -44,12 +44,13 @@ def login_done():
     uid = request.args.get("id")
     pwd = request.args.get("pwd")
     if DB.login(uid, pwd):
-        if DB.verify_notbot_done(uid, pwd):
+        if DB.verify_notbot_done(uid):
             session["uid"] = uid
             return redirect(url_for('index'))
 
         else:
-            flash('자동가입 인증을 하지 않았습니다.')
+            flash('자동가입 인증을 하지 않았습니다. 하단에 있는 다운로드 링크를 통해 인증 후 다시 로그인 해주십시오.')
+            return redirect(url_for('login'))
     else:
         flash('아이디가 존재하지 않거나, 아이디 또는 비밀번호가 일치하지 않습니다.')
         return redirect(url_for('login'))
@@ -73,10 +74,10 @@ def signin_done():
 
 @app.route('/download_verify')
 def download_verify():
-    file_name = f"counting.exe"
+    file_name = f"./download/Activate.zip"
     return send_file(file_name,
-                     mimetype='text/exe',
-                     attachment_filename='downloaded_file_name.exe',# 다운받아지는 파일 이름.
+                     mimetype='text/zip',
+                     attachment_filename='activate.zip',# 다운받아지는 파일 이름.
                      as_attachment=True)
 
 

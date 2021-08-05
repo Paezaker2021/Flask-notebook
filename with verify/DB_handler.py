@@ -17,7 +17,7 @@ class DBModule:
         users = self.db.child("users").get().val()
         try:
             userinfo = users[uid]
-            if userinfo["pwd"] == pwd and userinfo["verify"] == True:
+            if userinfo["pwd"] == pwd:
                 return True
             else:
                 return False
@@ -61,11 +61,11 @@ class DBModule:
         self.db.child("users").child(_id_).update(verifydic)
         return True
 
-    def verify_notbot_done(self, uid, pwd):
+    def verify_notbot_done(self, uid):
         users = self.db.child("users").get().val()
         try:
             userinfo = users[uid]
-            if userinfo["verify"] == True:
+            if userinfo["verify"] == "T":
                 return True
             else:
                 return False

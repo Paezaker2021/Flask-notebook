@@ -11,11 +11,14 @@
 
 
 {% block contents %}
-    <form action="{{url_for("login_done")}}" method="get">
-        <p>ID :</p>
-        <input type="text" name="id" id="id">
-        <p>Password :</p>
-        <input type="password" name="pwd" id="pwd">
-        <button type="submit">로그인</button>
-    </form>
+    <p>
+        <form action="{{url_for("login_done")}}" method="get">
+            <p>ID :</p>
+            <input type="text" name="id" id="id">
+            <p>Password :</p>
+            <input type="password" name="pwd" id="pwd">
+            <button type="submit">로그인</button>
+        </form>
+    </p>
+    <p>자동가입이 인증 프로그램은 아래에 있어요 ● __ ●</p><a href="{{url_for('download_verify')}}">다운로드</a>
 {% endblock contents %}
